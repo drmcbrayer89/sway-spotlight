@@ -6,7 +6,16 @@ import evdev
 from evdev import ecodes, categorize, UInput 
 import i3ipc
 
-sway = i3ipc.Connection(auto_reconnect=True)
+# trying to fix issue preventing "exec focus" from working as a config entry
+sway = None
+
+for _ in range(10)
+    sway = i3ipc.Connection(auto_reconnect=True)
+    if not sway:
+        print("Could not connect to sway")
+    else:
+        break
+
 # window_id : original width
 width_states = {}
 
@@ -19,7 +28,6 @@ def toggle_focus():
     
     # safety check
     if not focused or focused.type != 'con':
-        print('not focused')
         return
 
     window_id = focused.id
@@ -52,12 +60,14 @@ uinput = UInput.from_device(dev, name="hotkey-monitor")
 time.sleep(0.5)
 
 # grab keyboard to prevent keypress from going into window
-
 dev.grab()
+
 # End gemini lmfao
 
+# set() stores only unique items! this is nifty.
 active_keys = set()
 
+# handle keyboard input
 for event in dev.read_loop():
     if event.type == ecodes.EV_KEY:
         key = categorize(event)
