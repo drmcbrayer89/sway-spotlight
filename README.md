@@ -1,3 +1,4 @@
+
 Sway-spotlight allows a user to give screen width priority to a focused window.
 
 Sway-spotlight is written in Python3 and requires the following:
@@ -15,3 +16,4 @@ Hotkey is bound to Mod(Win) + Shift + F. Will add customization later if this ga
 
 Enjoy!
 
+<img width="3440" height="1440" alt="20261114_02h57m54s_grim" src="https://github.com/user-attachments/assets/b3dbc037-e5b1-4fa0-a286-d65cdaf1bbdd" />
