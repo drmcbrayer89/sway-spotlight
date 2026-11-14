@@ -14,3 +14,5 @@ Usage:
 Hotkey is bound to Mod(Win) + Shift + F. Will add customization later if this gains some traction.
 
 Enjoy!
+
+<img width="3440" height="1440" alt="20261114_02h55m06s_grim" src="https://github.com/user-attachments/assets/190a3859-c93b-44bd-926a-1e50c6d78757" />
