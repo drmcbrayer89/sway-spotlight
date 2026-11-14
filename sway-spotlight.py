@@ -9,12 +9,9 @@ import i3ipc
 # trying to fix issue preventing "exec focus" from working as a config entry
 sway = None
 
-for _ in range(10)
-    sway = i3ipc.Connection(auto_reconnect=True)
-    if not sway:
-        print("Could not connect to sway")
-    else:
-        break
+time.sleep(1)
+
+sway = i3ipc.Connection(auto_reconnect=True)
 
 # window_id : original width
 width_states = {}
