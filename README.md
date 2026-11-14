@@ -12,7 +12,7 @@ Usage:
 3. Ensure it's executable: chmod +x /usr/local/bin/swayspotlight
 4. Add to ~/.config/sway/config: "exec_always swayspotlight"
 
-Hotkey is bound to Mod(Win) + Shift + F. Will add customization later if this gains some traction.
+Hotkey is bound to Mod(Win) + Shift + F. Will add customization later if this gains some traction.  
 Hotkey to restore default splith: Mod(Win) + Shift + R.
 
 Enjoy!
