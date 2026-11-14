@@ -16,6 +16,31 @@ sway = i3ipc.Connection(auto_reconnect=True)
 # window_id : original width
 width_states = {}
 
+# get total window count on a workspace
+# find split fraction based on window count
+# set all windows widths back to split fraction
+
+def restore_default_split():
+    global sway, width_states
+
+    tree = sway.get_tree()
+    focused = tree.find_focused()
+    if not focused:
+        return
+
+    workspace = focused.workspace()
+    leaves = workspace.leaves()
+
+    window_count = len(leaves)
+    if window_count <= 1:
+        return
+
+    width_px = workspace.rect.width
+    width_target_px = int(width_px / window_count)
+
+    for win in leaves:
+        sway.command(f'[con_id="{win.id}"] resize set width {width_target_px} px')
+
 def toggle_focus():
     global sway, width_states
     
@@ -35,7 +60,6 @@ def toggle_focus():
         sway.command(f'resize set width {original_width} px')
     else:
         width_states[window_id] = focused.rect.width
-        print(f'id: {window_id} width(px): {width_states[window_id]}')
         sway.command(f'resize set width 67 ppt')
 
 
@@ -80,6 +104,14 @@ for event in dev.read_loop():
             key.keystate == key.key_down
         ):
             toggle_focus()
+            continue
+
+        if (ecodes.KEY_LEFTMETA in active_keys and 
+            ecodes.KEY_LEFTSHIFT in active_keys and
+            ecodes.KEY_R in active_keys and
+            key.keystate == key.key_down
+        ):
+            restore_default_split()
             continue
         
         uinput.write_event(event)
