@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 import time
-import signal
-import sys
 import evdev
 from evdev import ecodes, categorize, UInput 
 import i3ipc
 
+focus_width = 61
+
 # trying to fix issue preventing "exec focus" from working as a config entry
 sway = None
 
-time.sleep(1)
+time.sleep(2)
 
 sway = i3ipc.Connection(auto_reconnect=True)
 
@@ -49,7 +49,7 @@ def toggle_focus():
     focused = tree.find_focused()
     
     # safety check
-    if not focused or focused.type != 'con':
+    if not focused or focused.type != "con":
         return
 
     window_id = focused.id
@@ -57,10 +57,10 @@ def toggle_focus():
     # if the id has been seen before, restore; else resize to 67%
     if window_id in width_states:
         original_width = width_states.pop(window_id)
-        sway.command(f'resize set width {original_width} px')
+        sway.command(f"resize set width {original_width} px")
     else:
         width_states[window_id] = focused.rect.width
-        sway.command(f'resize set width 67 ppt')
+        sway.command(f"resize set width {focus_width} ppt")
 
 
 def find_keyboard():
