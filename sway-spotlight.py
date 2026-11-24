@@ -73,9 +73,6 @@ def toggle_focus():
         width_states[window_id] = focused.rect.width
         sway.command(f"resize set width {focus_width} ppt")
 
-def on_shutdown():
-
-
 def find_keyboard():
     while True:
         devices = [evdev.InputDevice(path) for path in evdev.list_devices()]
@@ -98,7 +95,7 @@ dev.grab()
 # End gemini lmfao
 
 # terminate if sway exit
-sway.on(Event.SHUTDOWN, on_shutdown)
+#sway.on(Event.SHUTDOWN, on_shutdown)
 
 # set() stores only unique items! this is nifty.
 active_keys = set()
